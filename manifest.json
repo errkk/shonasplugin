@@ -1,0 +1,17 @@
+{
+  "name": "Whats going in in reception?",
+  "version": "1.0",
+  "description": "Data Interface to reception",
+  "browser_action": {
+    "default_icon": "img/icon.png",
+	"popup": "popup.html"
+  },
+  "permissions": [
+	"http://myth.readingroom.local/",
+	"http://localhost/"
+  ],
+  "icons" : {
+      "16" : "img/icon@16.png",
+      "48" : "img/icon@48.png"
+  }
+}
