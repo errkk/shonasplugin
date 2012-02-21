@@ -85,7 +85,10 @@ document.addEventListener('DOMContentLoaded',function(){
 	}
     }
     
-    
+    /**
+     * Send a post to the server against a certain event type to record it happening
+     * Success function is run on successfull reciept of the message
+     */
     function recordEvent( id )
     {
 	var el_button	= document.getElementById( 'button_' + id ),
@@ -105,15 +108,24 @@ document.addEventListener('DOMContentLoaded',function(){
 	req.onreadystatechange  = function () {
 	    
 	    el_button.removeAttribute( 'disabled' );
-	    
-//	    updateMessagesRemote(function(){
-//		unSetLoading();
-//	    });
+	    if( 'True' === req.responseText ){
+		unSetLoading();
+		success();
+	    }
 	    
 	}
 	req.send( jsondata );
 	
-	console.log(req);
+    }
+    
+    /**
+     * Display visual success feedback to the user
+     */
+    function success()
+    {
+	var body = document.getElementsByTagName('body')[0];
+	body.setAttribute( 'class', 'success' );
+	window.setTimeout(function(){ body.setAttribute( 'class', null ) }, 500 );
     }
     
 
@@ -156,8 +168,11 @@ document.addEventListener('DOMContentLoaded',function(){
 	};
 	req.send();
     };
-    updateMessagesRemote();
     
+    /**
+     * Pull in event types that are available
+     */
+    updateMessagesRemote();
       
 
 
